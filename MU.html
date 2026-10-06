@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MU University</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                mu: {
+                    dark: '#0d47a1',
+                    primary: '#1976d2',
+                    accent: '#2196f3',
+                    light: '#64b5f6',
+                    bg: '#f4f8fc'
+                }
+            }
+        }
+    }
+}
+</script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:#f4f8fc;
+    color:#1e293b;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.nav-link.active{
+    background:#1976d2;
+    color:white;
+}
+
+.card{
+    transition:0.25s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+.gallery-img{
+    transition:0.35s;
+}
+
+.gallery-card:hover .gallery-img{
+    transform:scale(1.05);
+}
+
+.notice-track{
+    animation:moveNotice 25s linear infinite;
+    white-space:nowrap;
+}
+
+@keyframes moveNotice{
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+}
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+}
+
+.faq-answer.open{
+    max-height:250px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NOTICE BAR
+========================================================= -->
+
+<div class="bg-[#0d47a1] text-white text-sm overflow-hidden">
+
+    <div class="max-w-7xl mx-auto flex items-center">
+
+        <span class="bg-[#2196f3] px-4 py-2 font-bold shrink-0">
+
+            <i class="fa-solid fa-bell mr-1"></i>
+
+            Notice
+
+        </span>
+
+        <div class="overflow-hidden flex-1">
+
+            <div class="notice-track inline-block px-6 py-2">
+
+                Admissions Open •
+                Academic Programs •
+                Campus Activities •
+                Student Support •
+                Admissions Open •
+                Academic Programs •
+                Campus Activities •
+                Student Support •
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="bg-[#0d47a1] text-white sticky top-0 z-50 shadow-lg">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+        <div class="h-20 flex items-center justify-between">
+
+
+            <!-- LOGO -->
+
+            <button
+                onclick="showPage('home')"
+                class="flex items-center gap-3 text-left">
+
+                <div
+                    class="w-14 h-14 bg-white rounded-xl p-1.5 shadow-md
+                    flex items-center justify-center">
+
+                    <img
+                        src="D:\FD\mu image\MU uni.jpg"
+                        alt="MU University Logo"
+                        class="w-full h-full object-contain">
+
+                </div>
+
+
+                <div>
+
+                    <h1 class="text-xl sm:text-2xl font-extrabold">
+
+                        MU University
+
+                    </h1>
+
+                    <p class="text-xs text-[#64b5f6]">
+
+                        Mumbai, Maharashtra
+
+                    </p>
+
+                </div>
+
+            </button>
+
+
+
+            <!-- DESKTOP NAVIGATION -->
+
+            <nav class="hidden md:flex gap-1">
+
+                <button
+                    onclick="showPage('home')"
+                    class="nav-link active px-3 py-2 rounded-lg
+                    text-sm font-semibold"
+                    data-page="home">
+
+                    Home
+
+                </button>
+
+
+                <button
+                    onclick="showPage('about')"
+                    class="nav-link px-3 py-2 rounded-lg
+                    text-sm font-semibold"
+                    data-page="about">
+
+                    About
+
+                </button>
+
+
+                <button
+                    onclick="showPage('courses')"
+                    class="nav-link px-3 py-2 rounded-lg
+                    text-sm font-semibold"
+                    data-page="courses">
+
+                    Courses
+
+                </button>
+
+
+                <button
+                    onclick="showPage('gallery')"
+                    class="nav-link px-3 py-2 rounded-lg
+                    text-sm font-semibold"
+                    data-page="gallery">
+
+                    Gallery
+
+                </button>
+
+
+                <button
+                    onclick="showPage('admission')"
+                    class="nav-link px-3 py-2 rounded-lg
+                    text-sm font-semibold"
+                    data-page="admission">
+
+                    Admission
+
+                </button>
+
+
+                <button
+                    onclick="showPage('faq')"
+                    class="nav-link px-3 py-2 rounded-lg
+                    text-sm font-semibold"
+                    data-page="faq">
+
+                    FAQs
+
+                </button>
+
+            </nav>
+
+
+
+            <!-- MOBILE MENU BUTTON -->
+
+            <button
+                id="menuBtn"
+                onclick="toggleMenu()"
+                class="md:hidden p-2 rounded-lg
+                hover:bg-[#1976d2]">
+
+                <i class="fa-solid fa-bars text-xl"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- MOBILE NAVIGATION -->
+
+        <div
+            id="mobileMenu"
+            class="hidden md:hidden pb-4 space-y-1">
+
+            <button
+                onclick="showPage('home');toggleMenu()"
+                class="w-full text-left px-4 py-2 rounded-lg
+                hover:bg-[#1976d2]">
+
+                Home
+
+            </button>
+
+
+            <button
+                onclick="showPage('about');toggleMenu()"
+                class="w-full text-left px-4 py-2 rounded-lg
+                hover:bg-[#1976d2]">
+
+                About
+
+            </button>
+
+
+            <button
+                onclick="showPage('courses');toggleMenu()"
+                class="w-full text-left px-4 py-2 rounded-lg
+                hover:bg-[#1976d2]">
+
+                Courses
+
+            </button>
+
+
+            <button
+                onclick="showPage('gallery');toggleMenu()"
+                class="w-full text-left px-4 py-2 rounded-lg
+                hover:bg-[#1976d2]">
+
+                Gallery
+
+            </button>
+
+
+            <button
+                onclick="showPage('admission');toggleMenu()"
+                class="w-full text-left px-4 py-2 rounded-lg
+                hover:bg-[#1976d2]">
+
+                Admission
+
+            </button>
+
+
+            <button
+                onclick="showPage('faq');toggleMenu()"
+                class="w-full text-left px-4 py-2 rounded-lg
+                hover:bg-[#1976d2]">
+
+                FAQs
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+
+
+
+<!-- =========================================================
+     HOME PAGE
+========================================================= -->
+
+<section
+    id="home"
+    class="page active space-y-8">
+
+
+    <!-- HERO -->
+
+    <div
+        class="relative overflow-hidden rounded-3xl
+        bg-gradient-to-r from-[#0d47a1]
+        via-[#1976d2] to-[#2196f3]
+        text-white p-8 sm:p-12 shadow-xl">
+
+        <div
+            class="absolute right-0 top-0 w-64 h-64
+            rounded-full bg-[#64b5f6]/20 blur-3xl">
+        </div>
+
+
+        <div class="relative max-w-2xl">
+
+            <span
+                class="inline-block bg-white/15
+                border border-white/20 px-3 py-1
+                rounded-full text-xs font-bold mb-4">
+
+                WELCOME TO MU UNIVERSITY
+
+            </span>
+
+
+            <h2
+                class="text-3xl sm:text-5xl
+                font-extrabold leading-tight">
+
+                Learn Today.
+                <br>
+                Build Your Future.
+
+            </h2>
+
+
+            <p
+                class="mt-4 text-blue-100 leading-relaxed">
+
+                A simple and student-friendly university
+                website where students can explore courses,
+                campus facilities, admission information and
+                student activities.
+
+            </p>
+
+
+            <div class="mt-7 flex flex-wrap gap-3">
+
+                <button
+                    onclick="showPage('courses')"
+                    class="bg-white text-[#0d47a1]
+                    px-5 py-3 rounded-xl font-bold
+                    hover:bg-[#64b5f6]
+                    hover:text-white">
+
+                    Explore Courses
+
+                    <i class="fa-solid fa-arrow-right ml-1"></i>
+
+                </button>
+
+
+                <button
+                    onclick="showPage('admission')"
+                    class="border border-white/60
+                    px-5 py-3 rounded-xl font-bold
+                    hover:bg-white/10">
+
+                    Admission
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUICK FEATURES -->
+
+    <div
+        class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+
+        <div
+            class="card bg-white rounded-2xl p-5
+            shadow-sm border border-slate-100">
+
+            <i
+                class="fa-solid fa-graduation-cap
+                text-2xl text-[#1976d2]">
+            </i>
+
+            <h3
+                class="font-bold text-[#0d47a1] mt-3">
+
+                Academic Programs
+
+            </h3>
+
+            <p class="text-xs text-slate-500 mt-1">
+
+                UG and PG options
+
+            </p>
+
+        </div>
+
+
+
+        <div
+            class="card bg-white rounded-2xl p-5
+            shadow-sm border border-slate-100">
+
+            <i
+                class="fa-solid fa-flask
+                text-2xl text-[#1976d2]">
+            </i>
+
+            <h3
+                class="font-bold text-[#0d47a1] mt-3">
+
+                Learning Spaces
+
+            </h3>
+
+            <p class="text-xs text-slate-500 mt-1">
+
+                Labs and classrooms
+
+            </p>
+
+        </div>
+
+
+
+        <div
+            class="card bg-white rounded-2xl p-5
+            shadow-sm border border-slate-100">
+
+            <i
+                class="fa-solid fa-users
+                text-2xl text-[#1976d2]">
+            </i>
+
+            <h3
+                class="font-bold text-[#0d47a1] mt-3">
+
+                Student Life
+
+            </h3>
+
+            <p class="text-xs text-slate-500 mt-1">
+
+                Clubs and activities
+
+            </p>
+
+        </div>
+
+
+
+        <div
+            class="card bg-white rounded-2xl p-5
+            shadow-sm border border-slate-100">
+
+            <i
+                class="fa-solid fa-briefcase
+                text-2xl text-[#1976d2]">
+            </i>
+
+            <h3
+                class="font-bold text-[#0d47a1] mt-3">
+
+                Career Support
+
+            </h3>
+
+            <p class="text-xs text-slate-500 mt-1">
+
+                Skills and placement guidance
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- WHY MU -->
+
+    <div class="grid lg:grid-cols-3 gap-6">
+
+
+        <div
+            class="lg:col-span-2 bg-white
+            rounded-2xl shadow-sm
+            border border-slate-100 p-6">
+
+            <div
+                class="flex items-center
+                justify-between mb-5">
+
+                <div>
+
+                    <p
+                        class="text-xs font-bold
+                        uppercase tracking-wider
+                        text-[#2196f3]">
+
+                        University
+
+                    </p>
+
+                    <h2
+                        class="text-2xl font-extrabold
+                        text-[#0d47a1]">
+
+                        Why choose MU University?
+
+                    </h2>
+
+                </div>
+
+
+                <i
+                    class="fa-solid fa-star
+                    text-[#64b5f6] text-2xl">
+                </i>
+
+            </div>
+
+
+            <div
+                class="grid sm:grid-cols-2 gap-4">
+
+
+                <div
+                    class="p-4 rounded-xl
+                    bg-[#f4f8fc]">
+
+                    <h3
+                        class="font-bold text-[#0d47a1]">
+
+                        Practical Learning
+
+                    </h3>
+
+                    <p
+                        class="text-sm text-slate-600 mt-1">
+
+                        Focus on classroom learning,
+                        projects and practical activities.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="p-4 rounded-xl
+                    bg-[#f4f8fc]">
+
+                    <h3
+                        class="font-bold text-[#0d47a1]">
+
+                        Student Activities
+
+                    </h3>
+
+                    <p
+                        class="text-sm text-slate-600 mt-1">
+
+                        Opportunities for cultural,
+                        sports and technical activities.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="p-4 rounded-xl
+                    bg-[#f4f8fc]">
+
+                    <h3
+                        class="font-bold text-[#0d47a1]">
+
+                        Digital Learning
+
+                    </h3>
+
+                    <p
+                        class="text-sm text-slate-600 mt-1">
+
+                        Technology-supported learning
+                        for today's students.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="p-4 rounded-xl
+                    bg-[#f4f8fc]">
+
+                    <h3
+                        class="font-bold text-[#0d47a1]">
+
+                        Career Preparation
+
+                    </h3>
+
+                    <p
+                        class="text-sm text-slate-600 mt-1">
+
+                        Guidance for skills, internships
+                        and future opportunities.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CAMPUS PHOTO -->
+
+        <div
+            class="rounded-2xl overflow-hidden
+            shadow-sm min-h-[280px]">
+
+            <img
+                src="D:\FD\mu image\campus.jpg"
+                alt="University Campus"
+                class="w-full h-full object-cover">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ABOUT PAGE
+========================================================= -->
+
+<section id="about" class="page">
+
+
+    <div class="bg-white rounded-2xl p-6 sm:p-9 shadow-sm">
+
+        <p
+            class="text-xs font-bold uppercase
+            tracking-wider text-[#2196f3]">
+
+            About Us
+
+        </p>
+
+
+        <h2
+            class="text-3xl font-extrabold
+            text-[#0d47a1] mt-2">
+
+            About MU University
+
+        </h2>
+
+
+        <p
+            class="text-slate-600 mt-5
+            leading-relaxed">
+
+            MU University aims to provide students
+            with a supportive academic environment
+            where they can develop knowledge,
+            technical skills and confidence for
+            their future careers.
+
+        </p>
+
+
+        <div
+            class="grid md:grid-cols-2 lg:grid-cols-4
+            gap-5 mt-8">
+
+
+            <div
+                class="p-5 rounded-2xl
+                bg-[#f4f8fc]">
+
+                <i
+                    class="fa-solid fa-book-open
+                    text-2xl text-[#1976d2]">
+                </i>
+
+                <h3
+                    class="font-bold
+                    text-[#0d47a1] mt-3">
+
+                    Library
+
+                </h3>
+
+                <p
+                    class="text-sm text-slate-600 mt-2">
+
+                    Learning resources for
+                    students and academic work.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="p-5 rounded-2xl
+                bg-[#f4f8fc]">
+
+                <i
+                    class="fa-solid fa-computer
+                    text-2xl text-[#1976d2]">
+                </i>
+
+                <h3
+                    class="font-bold
+                    text-[#0d47a1] mt-3">
+
+                    Computer Labs
+
+                </h3>
+
+                <p
+                    class="text-sm text-slate-600 mt-2">
+
+                    Technology-enabled spaces
+                    for practical learning.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="p-5 rounded-2xl
+                bg-[#f4f8fc]">
+
+                <i
+                    class="fa-solid fa-futbol
+                    text-2xl text-[#1976d2]">
+                </i>
+
+                <h3
+                    class="font-bold
+                    text-[#0d47a1] mt-3">
+
+                    Sports
+
+                </h3>
+
+                <p
+                    class="text-sm text-slate-600 mt-2">
+
+                    Opportunities for sports
+                    and student activities.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="p-5 rounded-2xl
+                bg-[#f4f8fc]">
+
+                <i
+                    class="fa-solid fa-users
+                    text-2xl text-[#1976d2]">
+                </i>
+
+                <h3
+                    class="font-bold
+                    text-[#0d47a1] mt-3">
+
+                    Student Community
+
+                </h3>
+
+                <p
+                    class="text-sm text-slate-600 mt-2">
+
+                    A friendly environment for
+                    interaction and activities.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     COURSES PAGE
+========================================================= -->
+
+<section id="courses" class="page">
+
+
+    <div class="mb-7">
+
+        <p
+            class="text-xs font-bold uppercase
+            tracking-wider text-[#2196f3]">
+
+            Academic Programs
+
+        </p>
+
+        <h2
+            class="text-3xl font-extrabold
+            text-[#0d47a1] mt-2">
+
+            Courses Offered
+
+        </h2>
+
+        <p class="text-slate-600 mt-2">
+
+            Explore undergraduate and postgraduate
+            programs available at MU University.
+
+        </p>
+
+    </div>
+
+
+
+    <div
+        class="grid sm:grid-cols-2
+        lg:grid-cols-3 gap-6">
+
+
+        <!-- BCA -->
+
+        <div
+            class="card bg-white rounded-2xl
+            p-6 shadow-sm
+            border border-slate-100">
+
+            <div
+                class="w-12 h-12 rounded-xl
+                bg-[#e3f2fd]
+                flex items-center justify-center">
+
+                <i
+                    class="fa-solid fa-laptop-code
+                    text-[#1976d2] text-xl">
+                </i>
+
+            </div>
+
+            <h3
+                class="text-xl font-bold
+                text-[#0d47a1] mt-4">
+
+                BCA
+
+            </h3>
+
+            <p
+                class="text-sm text-slate-600 mt-2">
+
+                Bachelor of Computer Applications
+                for students interested in computer
+                applications and technology.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- BBA -->
+
+        <div
+            class="card bg-white rounded-2xl
+            p-6 shadow-sm
+            border border-slate-100">
+
+            <div
+                class="w-12 h-12 rounded-xl
+                bg-[#e3f2fd]
+                flex items-center justify-center">
+
+                <i
+                    class="fa-solid fa-chart-line
+                    text-[#1976d2] text-xl">
+                </i>
+
+            </div>
+
+            <h3
+                class="text-xl font-bold
+                text-[#0d47a1] mt-4">
+
+                BBA
+
+            </h3>
+
+            <p
+                class="text-sm text-slate-600 mt-2">
+
+                Bachelor of Business Administration
+                focusing on business and management.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- BCOM -->
+
+        <div
+            class="card bg-white rounded-2xl
+            p-6 shadow-sm
+            border border-slate-100">
+
+            <div
+                class="w-12 h-12 rounded-xl
+                bg-[#e3f2fd]
+                flex items-center justify-center">
+
+                <i
+                    class="fa-solid fa-calculator
+                    text-[#1976d2] text-xl">
+                </i>
+
+            </div>
+
+            <h3
+                class="text-xl font-bold
+                text-[#0d47a1] mt-4">
+
+                B.Com
+
+            </h3>
+
+            <p
+                class="text-sm text-slate-600 mt-2">
+
+                Bachelor of Commerce covering
+                accounting, business and commerce.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- MCA -->
+
+        <div
+            class="card bg-white rounded-2xl
+            p-6 shadow-sm
+            border border-slate-100">
+
+            <div
+                class="w-12 h-12 rounded-xl
+                bg-[#e3f2fd]
+                flex items-center justify-center">
+
+                <i
+                    class="fa-solid fa-code
+                    text-[#1976d2] text-xl">
+                </i>
+
+            </div>
+
+            <h3
+                class="text-xl font-bold
+                text-[#0d47a1] mt-4">
+
+                MCA
+
+            </h3>
+
+            <p
+                class="text-sm text-slate-600 mt-2">
+
+                Master of Computer Applications
+                for advanced study in computing.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- MBA -->
+
+        <div
+            class="card bg-white rounded-2xl
+            p-6 shadow-sm
+            border border-slate-100">
+
+            <div
+                class="w-12 h-12 rounded-xl
+                bg-[#e3f2fd]
+                flex items-center justify-center">
+
+                <i
+                    class="fa-solid fa-briefcase
+                    text-[#1976d2] text-xl">
+                </i>
+
+            </div>
+
+            <h3
+                class="text-xl font-bold
+                text-[#0d47a1] mt-4">
+
+                MBA
+
+            </h3>
+
+            <p
+                class="text-sm text-slate-600 mt-2">
+
+                Master of Business Administration
+                focusing on management and leadership.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- MCOM -->
+
+        <div
+            class="card bg-white rounded-2xl
+            p-6 shadow-sm
+            border border-slate-100">
+
+            <div
+                class="w-12 h-12 rounded-xl
+                bg-[#e3f2fd]
+                flex items-center justify-center">
+
+                <i
+                    class="fa-solid fa-book
+                    text-[#1976d2] text-xl">
+                </i>
+
+            </div>
+
+            <h3
+                class="text-xl font-bold
+                text-[#0d47a1] mt-4">
+
+                M.Com
+
+            </h3>
+
+            <p
+                class="text-sm text-slate-600 mt-2">
+
+                Master of Commerce for advanced
+                study in commerce and business.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     GALLERY PAGE
+========================================================= -->
+
+<section id="gallery" class="page">
+
+
+    <div class="mb-7">
+
+        <p
+            class="text-xs font-bold uppercase
+            tracking-wider text-[#2196f3]">
+
+            Campus Life
+
+        </p>
+
+        <h2
+            class="text-3xl font-extrabold
+            text-[#0d47a1] mt-2">
+
+            University Gallery
+
+        </h2>
+
+        <p class="text-slate-600 mt-2">
+
+           University campus photographs.
+
+        </p>
+
+    </div>
+
+
+
+    <div
+        class="grid md:grid-cols-2
+        lg:grid-cols-3 gap-6">
+
+        <!-- PHOTO 2 -->
+
+        <div
+            class="gallery-card overflow-hidden
+            rounded-2xl bg-white
+            shadow-sm border border-slate-100">
+
+            <div class="h-56 overflow-hidden">
+
+                <img
+                    src="D:\FD\mu image\campus.jpg"
+                    alt="Madras University campus"
+                    class="gallery-img w-full h-full object-cover">
+
+            </div>
+
+            <div class="p-5">
+
+                <h3
+                    class="font-bold
+                    text-[#0d47a1]">
+
+                    University Campus
+
+                </h3>
+
+                <p
+                    class="text-xs text-slate-500 mt-1">
+                </p>
+
+            </div>
+
+        </div>
+ <div
+            class="gallery-card overflow-hidden
+            rounded-2xl bg-white
+            shadow-sm border border-slate-100">
+
+            <div class="h-56 overflow-hidden">
+
+                <img
+                    src="D:\FD\mu image\library.jpg"
+                    alt="Madras University campus"
+                    class="gallery-img w-full h-full object-cover">
+
+            </div>
+
+            <div class="p-5">
+
+                <h3
+                    class="font-bold
+                    text-[#0d47a1]">
+
+                    Library
+
+                </h3>
+
+                <p
+                    class="text-xs text-slate-500 mt-1">
+                </p>
+
+            </div>
+
+        </div>
+	 <div
+            class="gallery-card overflow-hidden
+            rounded-2xl bg-white
+            shadow-sm border border-slate-100">
+
+            <div class="h-56 overflow-hidden">
+
+                <img
+                    src="D:\FD\mu image\college.jpg"
+                    alt="Madras University campus"
+                    class="gallery-img w-full h-full object-cover">
+
+            </div>
+
+            <div class="p-5">
+
+                <h3
+                    class="font-bold
+                    text-[#0d47a1]">
+		Environment 
+                </h3>
+
+                <p
+                    class="text-xs text-slate-500 mt-1">
+
+                </p>
+
+            </div>
+
+        </div>
+
+<div
+            class="gallery-card overflow-hidden
+            rounded-2xl bg-white
+            shadow-sm border border-slate-100">
+
+            <div class="h-56 overflow-hidden">
+
+                <img
+                    src="D:\FD\mu image\computer lab.jpg"
+                    alt="Madras University campus"
+                    class="gallery-img w-full h-full object-cover">
+
+            </div>
+
+            <div class="p-5">
+
+                <h3
+                    class="font-bold
+                    text-[#0d47a1]">
+		Computer Lab
+                </h3>
+
+                <p
+                    class="text-xs text-slate-500 mt-1">
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- YOUR PHOTO -->
+
+        <div
+            class="gallery-card overflow-hidden
+            rounded-2xl border
+            border-slate-200">
+
+            <div
+                class="h-56
+                bg-gradient-to-br
+                from-[#0d47a1]
+                to-[#2196f3]
+                flex items-center
+                justify-center
+                text-white text-center p-6">
+
+                <div>
+
+                    <i
+                        class="fa-solid fa-camera
+                        text-4xl text-[#64b5f6]">
+                    </i>
+
+                    <h3
+                        class="font-bold text-xl mt-3">
+
+                        Your Campus Photo
+
+                    </h3>
+
+                    <p
+                        class="text-sm text-blue-100 mt-1">
+
+                        Replace this card with
+                        your own university image.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        class="mt-6 p-4 rounded-xl
+        bg-[#f4f8fc]
+        text-xs text-slate-600">
+
+        <strong class="text-[#0d47a1]">
+
+            Photo Note:
+
+        </strong>
+
+        The gallery uses representative Indian
+        campus photographs. Keep appropriate
+        attribution/licensing information if
+        publishing the images.
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ADMISSION PAGE
+========================================================= -->
+
+<section id="admission" class="page">
+
+
+    <div class="grid lg:grid-cols-5 gap-7">
+
+
+        <!-- LEFT SIDE -->
+
+        <div
+            class="lg:col-span-2
+            bg-gradient-to-br
+            from-[#0d47a1]
+            to-[#1976d2]
+            text-white rounded-2xl
+            p-7 shadow-lg">
+
+            <p
+                class="text-xs font-bold
+                text-[#64b5f6]
+                uppercase tracking-wider">
+
+                Admissions
+
+            </p>
+
+
+            <h2
+                class="text-3xl font-extrabold mt-2">
+
+                Start Your Application
+
+            </h2>
+
+
+            <p
+                class="text-blue-100
+                text-sm mt-4
+                leading-relaxed">
+
+                Fill in your basic details
+                and select your preferred
+                course.
+
+            </p>
+
+
+            <div
+                class="mt-7 space-y-4 text-sm">
+
+
+                <div class="flex gap-3">
+
+                    <i
+                        class="fa-solid fa-check
+                        text-[#64b5f6] mt-1">
+                    </i>
+
+                    <span>
+
+                        Select your preferred course.
+
+                    </span>
+
+                </div>
+
+
+                <div class="flex gap-3">
+
+                    <i
+                        class="fa-solid fa-check
+                        text-[#64b5f6] mt-1">
+                    </i>
+
+                    <span>
+
+                        Enter your contact information.
+
+                    </span>
+
+                </div>
+
+
+                <div class="flex gap-3">
+
+                    <i
+                        class="fa-solid fa-check
+                        text-[#64b5f6] mt-1">
+                    </i>
+
+                    <span>
+
+                        Submit the application form.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <div
+            class="lg:col-span-3
+            bg-white rounded-2xl
+            shadow-sm
+            border border-slate-100
+            p-6 sm:p-8">
+
+
+            <div
+                id="successMsg"
+                class="hidden mb-5 p-4
+                rounded-xl
+                bg-green-50
+                border border-green-200
+                text-green-800 text-sm">
+
+                <i
+                    class="fa-solid
+                    fa-circle-check mr-2">
+                </i>
+
+                Application submitted
+                successfully for this demo.
+
+            </div>
+
+
+            <form
+                onsubmit="submitForm(event)"
+                class="space-y-5">
+
+
+                <div
+                    class="grid sm:grid-cols-2 gap-5">
+
+
+                    <div>
+
+                        <label
+                            class="block text-sm
+                            font-semibold
+                            text-[#0d47a1]
+                            mb-1">
+
+                            First Name
+
+                        </label>
+
+                        <input
+                            required
+                            type="text"
+                            class="w-full px-4 py-3
+                            rounded-xl
+                            border border-slate-300
+                            outline-none
+                            focus:ring-2
+                            focus:ring-[#1976d2]"
+                            placeholder="Enter first name">
+
+                    </div>
+
+
+                    <div>
+
+                        <label
+                            class="block text-sm
+                            font-semibold
+                            text-[#0d47a1]
+                            mb-1">
+
+                            Last Name
+
+                        </label>
+
+                        <input
+                            required
+                            type="text"
+                            class="w-full px-4 py-3
+                            rounded-xl
+                            border border-slate-300
+                            outline-none
+                            focus:ring-2
+                            focus:ring-[#1976d2]"
+                            placeholder="Enter last name">
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="grid sm:grid-cols-2 gap-5">
+
+
+                    <div>
+
+                        <label
+                            class="block text-sm
+                            font-semibold
+                            text-[#0d47a1]
+                            mb-1">
+
+                            Mobile Number
+
+                        </label>
+
+                        <input
+                            required
+                            pattern="[0-9]{10}"
+                            type="tel"
+                            class="w-full px-4 py-3
+                            rounded-xl
+                            border border-slate-300
+                            outline-none
+                            focus:ring-2
+                            focus:ring-[#1976d2]"
+                            placeholder="10-digit number">
+
+                    </div>
+
+
+                    <div>
+
+                        <label
+                            class="block text-sm
+                            font-semibold
+                            text-[#0d47a1]
+                            mb-1">
+
+                            Email
+
+                        </label>
+
+                        <input
+                            required
+                            type="email"
+                            class="w-full px-4 py-3
+                            rounded-xl
+                            border border-slate-300
+                            outline-none
+                            focus:ring-2
+                            focus:ring-[#1976d2]"
+                            placeholder="student@email.com">
+
+                    </div>
+
+                </div>
+
+
+
+                <div>
+
+                    <label
+                        class="block text-sm
+                        font-semibold
+                        text-[#0d47a1]
+                        mb-1">
+
+                        Select Course
+
+                    </label>
+
+
+                    <select
+                        required
+                        class="w-full px-4 py-3
+                        rounded-xl
+                        border border-slate-300
+                        bg-white outline-none
+                        focus:ring-2
+                        focus:ring-[#1976d2]">
+
+                        <option value="">
+
+                            Choose a course
+
+                        </option>
+
+                        <option>BCA</option>
+
+                        <option>BBA</option>
+
+                        <option>B.Com</option>
+
+                        <option>MCA</option>
+
+                        <option>MBA</option>
+
+                        <option>M.Com</option>
+
+                    </select>
+
+                </div>
+
+
+
+                <button
+                    class="w-full
+                    bg-[#1976d2]
+                    hover:bg-[#0d47a1]
+                    text-white
+                    font-bold
+                    py-3 rounded-xl">
+
+                    Submit Application
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FAQ PAGE
+========================================================= -->
+
+<section id="faq" class="page">
+
+
+    <div
+        class="max-w-4xl mx-auto
+        bg-white rounded-2xl
+        p-6 sm:p-9 shadow-sm
+        border border-slate-100">
+
+
+        <p
+            class="text-xs font-bold
+            uppercase tracking-wider
+            text-[#2196f3]">
+
+            Help
+
+        </p>
+
+
+        <h2
+            class="text-3xl font-extrabold
+            text-[#0d47a1] mt-2">
+
+            Frequently Asked Questions
+
+        </h2>
+
+
+
+        <div class="mt-7 space-y-3">
+
+
+            <!-- FAQ 1 -->
+
+            <div
+                class="border border-slate-200
+                rounded-xl overflow-hidden">
+
+                <button
+                    onclick="toggleFaq('q1','i1')"
+                    class="w-full p-5 text-left
+                    font-bold text-[#0d47a1]
+                    flex justify-between">
+
+                    How can I apply for admission?
+
+                    <i
+                        id="i1"
+                        class="fa-solid fa-chevron-down
+                        text-[#1976d2]">
+                    </i>
+
+                </button>
+
+
+                <div
+                    id="q1"
+                    class="faq-answer px-5
+                    text-sm text-slate-600">
+
+                    <p class="pb-5">
+
+                        Open the Admission page,
+                        select a course and fill in
+                        the basic application form.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FAQ 2 -->
+
+            <div
+                class="border border-slate-200
+                rounded-xl overflow-hidden">
+
+                <button
+                    onclick="toggleFaq('q2','i2')"
+                    class="w-full p-5 text-left
+                    font-bold text-[#0d47a1]
+                    flex justify-between">
+
+                    Which courses are shown
+                    on this website?
+
+                    <i
+                        id="i2"
+                        class="fa-solid fa-chevron-down
+                        text-[#1976d2]">
+                    </i>
+
+                </button>
+
+
+                <div
+                    id="q2"
+                    class="faq-answer px-5
+                    text-sm text-slate-600">
+
+                    <p class="pb-5">
+
+                        The website includes BCA,
+                        BBA, B.Com, MCA, MBA
+                        and M.Com.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FAQ 3 -->
+
+            <div
+                class="border border-slate-200
+                rounded-xl overflow-hidden">
+
+                <button
+                    onclick="toggleFaq('q3','i3')"
+                    class="w-full p-5 text-left
+                    font-bold text-[#0d47a1]
+                    flex justify-between">
+
+                    Does the admission form
+                    store my data?
+
+                    <i
+                        id="i3"
+                        class="fa-solid fa-chevron-down
+                        text-[#1976d2]">
+                    </i>
+
+                </button>
+
+
+                <div
+                    id="q3"
+                    class="faq-answer px-5
+                    text-sm text-slate-600">
+
+                    <p class="pb-5">
+
+                        No. This is a front-end
+                        demonstration. It only
+                        displays a success message
+                        and does not use a database.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer
+    class="bg-[#0d47a1]
+    text-white mt-8">
+
+
+    <div
+        class="max-w-7xl mx-auto
+        px-4 sm:px-6 py-9">
+
+
+        <div
+            class="grid md:grid-cols-3 gap-7">
+
+
+            <!-- LOGO -->
+
+            <div>
+
+                <div
+                    class="flex items-center gap-3">
+
+                    <img
+                        src="mu-logo.png"
+                        alt="MU University Logo"
+                        class="w-11 h-11
+                        bg-white rounded-lg
+                        p-1 object-contain">
+
+                    <h3
+                        class="font-extrabold text-xl">
+
+                        MU University
+
+                    </h3>
+
+                </div>
+
+
+                <p
+                    class="text-sm text-blue-200 mt-3">
+
+                    Student-friendly academic
+                    website project.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- LINKS -->
+
+            <div>
+
+                <h4
+                    class="font-bold
+                    text-[#64b5f6]">
+
+                    Quick Links
+
+                </h4>
+
+
+                <div
+                    class="flex flex-wrap gap-3
+                    mt-3 text-sm
+                    text-blue-100">
+
+                    <button onclick="showPage('home')">
+
+                        Home
+
+                    </button>
+
+                    <button onclick="showPage('courses')">
+
+                        Courses
+
+                    </button>
+
+                    <button onclick="showPage('gallery')">
+
+                        Gallery
+
+                    </button>
+
+                    <button onclick="showPage('admission')">
+
+                        Admission
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTACT -->
+
+            <div>
+
+                <h4
+                    class="font-bold
+                    text-[#64b5f6]">
+
+                    Contact
+
+                </h4>
+
+
+                <p
+                    class="text-sm text-blue-100 mt-3">
+
+                    <i
+                        class="fa-solid fa-location-dot
+                        mr-2 text-[#2196f3]">
+                    </i>
+
+                    Mumbai, Maharashtra, India
+
+                </p>
+
+
+                <p
+                    class="text-sm text-blue-100 mt-2">
+
+                    <i
+                        class="fa-solid fa-envelope
+                        mr-2 text-[#2196f3]">
+                    </i>
+
+                    admissions@muuniversity.edu.in
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div
+            class="border-t border-blue-800
+            mt-7 pt-5 text-center
+            text-xs text-blue-300">
+
+            © 2026 MU University
+            • Academic Website Demo
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* CHANGE PAGE */
+
+function showPage(pageId){
+
+    document
+        .querySelectorAll('.page')
+        .forEach(page => {
+
+            page.classList.remove('active');
+
+        });
+
+
+    const target =
+        document.getElementById(pageId);
+
+
+    if(target){
+
+        target.classList.add('active');
+
+    }
+
+
+    document
+        .querySelectorAll('.nav-link')
+        .forEach(button => {
+
+            button.classList.remove('active');
+
+
+            if(button.dataset.page === pageId){
+
+                button.classList.add('active');
+
+            }
+
+        });
+
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+
+}
+
+
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+    document
+        .getElementById('mobileMenu')
+        .classList.toggle('hidden');
+
+}
+
+
+
+/* ADMISSION FORM */
+
+function submitForm(event){
+
+    event.preventDefault();
+
+
+    document
+        .getElementById('successMsg')
+        .classList.remove('hidden');
+
+
+    event.target.reset();
+
+}
+
+
+
+/* FAQ */
+
+function toggleFaq(answerId, iconId){
+
+    const answer =
+        document.getElementById(answerId);
+
+    const icon =
+        document.getElementById(iconId);
+
+
+    answer.classList.toggle('open');
+
+
+    if(answer.classList.contains('open')){
+
+        icon.style.transform =
+            'rotate(180deg)';
+
+    }
+    else{
+
+        icon.style.transform =
+            'rotate(0deg)';
+
+    }
+
+}
+
+</script>
+
+
+</body>
+</html>
